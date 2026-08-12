@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  kyystatus-hd:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: kyystatus-hd-server
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOST=0.0.0.0
+      - CORS_ORIGIN=*
+      - SESSION_DIR=/data/sessions
+      - STORAGE_DIR=/data/storage
+      - TEMP_DIR=/data/temp
+    volumes:
+      - ./data:/data
+    networks:
+      - kyystatus-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend service (optional - can be served by backend)
+  frontend:
+    image: nginx:alpine
+    container_name: kyystatus-hd-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./client/dist:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - kyystatus-hd
+    networks:
+      - kyystatus-network
+
+networks:
+  kyystatus-network:
+    driver: bridge
+
+volumes:
+  data:
+    driver: local

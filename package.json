@@ -1,0 +1,38 @@
+{
+  "name": "kyystatus-hd",
+  "version": "1.0.0",
+  "description": "KyyStatus HD - WhatsApp Status Uploader with HD Compression",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "build:client": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "start:server": "cd server && npm start",
+    "preview": "cd client && npm run preview",
+    "lint": "cd client && npm run lint && cd server && npm run lint",
+    "clean": "rm -rf client/dist server/dist node_modules client/node_modules server/node_modules"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "whatsapp",
+    "status",
+    "uploader",
+    "compression",
+    "baileys"
+  ],
+  "author": "KyyDevv",
+  "license": "MIT"
+}

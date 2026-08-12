@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.pem
+.cache/
+
+# Railway
+.railway/
+
+# Docker
+.docker/
+
+# Session files (in development)
+sessions/
+storage/
+temp/
+
+# Client build
+client/dist/
+
+# Server build
+server/dist/
+
+# Package lock files (optional, but recommended to commit)
+# package-lock.json
+# pnpm-lock.yaml
+# yarn.lock

@@ -1,0 +1,47 @@
+{
+  "name": "kyystatus-hd",
+  "description": "KyyStatus HD - WhatsApp Status Uploader with HD Compression",
+  "version": "1.0.0",
+  "services": [
+    {
+      "name": "server",
+      "start": "npm run start:server",
+      "build": "npm run build:server",
+      "watch": true,
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": "$PORT",
+        "HOST": "0.0.0.0",
+        "CORS_ORIGIN": "*",
+        "SESSION_DIR": "/data/sessions",
+        "STORAGE_DIR": "/data/storage",
+        "TEMP_DIR": "/data/temp"
+      },
+      "volumes": [
+        {
+          "name": "data",
+          "mount": "/data"
+        }
+      ]
+    },
+    {
+      "name": "client",
+      "start": "npm run preview",
+      "build": "npm run build:client",
+      "watch": true,
+      "static": "client/dist",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "variables": {
+    "PORT": 3000
+  },
+  "domains": [
+    {
+      "name": "kyystatus-hd",
+      "service": "server"
+    }
+  ]
+}
